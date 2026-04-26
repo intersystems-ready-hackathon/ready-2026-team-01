@@ -1,4 +1,25 @@
-# READY Hackathon Dev Template
+# TEAM 01 - [ Name of Project ] 
+
+## Project Summary 
+
+[ Add a 1-2 sentence summary of your project here - i,e. what is the high level goal of your project ] 
+
+## Technical Details
+
+[ Add details on the technical implementation of your project here ] 
+
+## Setup Instructions [Optional]
+
+[ If you have time, please add details on how someone else can start using your project here ]
+
+## Publicly accessible statement
+
+**Delete as appropriate**: 
+- We are happy for our project to be publicly visable after the event (you will remain repo admins) 
+- We would like our project to be made private at the end of the event
+
+
+# Template Instructions (feel free to delete)
 
 This repo provides a template to kickstart development with AI Hub. 
 
@@ -37,8 +58,8 @@ OR
 4. Clone this repo: 
 
 ```bash
-git clone https://github.com/intersystems-community/ai-hub-dev-template
-cd ai-hub-dev-template
+git clone https://github.com/intersystems-ready-hackathon/ready-2026-team-01.git
+cd ready-2026-team-01
 ```
 
 5. (Optional) Add an OPENAI_API_KEY to a file called .env in this repo. You can see an example in .env.example.
