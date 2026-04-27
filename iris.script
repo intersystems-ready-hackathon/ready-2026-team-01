@@ -50,4 +50,9 @@
 
     
     zpm "load /home/irisowner/dev/ -v":1:1
+    set sc = ##class(Sample.FHIRSetup).Run()
+    if $SYSTEM.Status.IsError(sc) {
+        write "FHIR setup failed: ", $SYSTEM.Status.GetErrorText(sc), !
+        halt 1
+    }
     halt

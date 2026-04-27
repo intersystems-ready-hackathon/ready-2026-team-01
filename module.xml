@@ -9,7 +9,6 @@
       <SourcesRoot>src</SourcesRoot>
       <Resource Name="Sample.PKG"/>
       <Invoke Method="Run" Class="Sample.MCPSetup"/>
-      <Invoke Method="Run" Class="Sample.FHIRSetup"/>
     </Module>
   </Document>
 </Export>
