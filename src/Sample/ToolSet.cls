@@ -12,4 +12,3 @@ Class Sample.ToolSet Extends %AI.ToolSet [DependsOn=Sample.Tools]
         </ToolSet>
     }    
 }
-

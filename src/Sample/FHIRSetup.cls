@@ -37,10 +37,18 @@ ClassMethod Run() As %Status
     If $$$ISERR(sc) Quit sc
 
     Set $Namespace = ..#Namespace
+    If ..FHIRRepositoryHasResources() {
+        Write "FHIR repository already contains resources; skipping FHIR endpoint install and data load.", !
+        Quit $$$OK
+    }
 
-    Write "Installing FHIR endpoint "_..#Endpoint, !
-    Set packages = $ListBuild(..#CorePackage)
-    Do ##class(HS.FHIRServer.Installer).InstallInstance(..#Endpoint, ..#StrategyClass, packages)
+    If '..FHIRRepositoryExists() {
+        Write "Installing FHIR endpoint "_..#Endpoint, !
+        Set packages = $ListBuild(..#CorePackage)
+        Do ##class(HS.FHIRServer.Installer).InstallInstance(..#Endpoint, ..#StrategyClass, packages)
+    } Else {
+        Write "FHIR repository already exists; skipping FHIR endpoint install.", !
+    }
 
     Write "Loading FHIR hospital resources from "_..#HospitalDataPath, !
     Set sc = ##class(HS.FHIRServer.Tools.DataLoader).SubmitResourceFiles(..#HospitalDataPath, "FHIRServer", ..#Endpoint)
@@ -56,6 +64,29 @@ ClassMethod Run() As %Status
 
     Write "FHIR resources loaded successfully.", !
     Quit $$$OK
+}
+
+ClassMethod FHIRRepositoryExists() As %Boolean [ Internal ]
+{
+    Quit:..FHIRResourceTableSchema()'="" 1
+    Quit 0
+}
+
+ClassMethod FHIRRepositoryHasResources() As %Boolean [ Internal ]
+{
+    Set schema = ..FHIRResourceTableSchema()
+    Quit:schema="" 0
+    Set rs = ##class(%SQL.Statement).%ExecDirect(, "select top 1 ID from "_schema_".Rsrc where Deleted=0")
+    Quit:rs.%SQLCODE<0 0
+    Quit rs.%Next()
+}
+
+ClassMethod FHIRResourceTableSchema() As %String [ Internal ]
+{
+    Set rs = ##class(%SQL.Statement).%ExecDirect(, "select top 1 TABLE_SCHEMA from INFORMATION_SCHEMA.TABLES where TABLE_SCHEMA %MATCHES 'HSFHIR*_R' and TABLE_NAME='Rsrc' order by TABLE_SCHEMA")
+    Quit:rs.%SQLCODE<0 ""
+    Quit:rs.%Next() rs.%GetData(1)
+    Quit ""
 }
 
 }
