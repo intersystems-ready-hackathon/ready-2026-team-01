@@ -1,8 +1,8 @@
-# TEAM 01 - [ Name of Project ] 
+# TEAM 01 - FHIRGuard
 
 ## Project Summary 
 
-[ Add a 1-2 sentence summary of your project here - i,e. what is the high level goal of your project ] 
+FHIRGuard is an intelligent MCP-powered data quality platform built on InterSystems IRIS that continuously monitors FHIR resources to detect anomalies, inconsistencies, and compliance issues in clinical data. It provides an AI-driven remediation toolbelt that recommends and automates corrective actions, improving data integrity, interoperability, and trust across healthcare systems.
 
 ## Technical Details
 
