@@ -16,6 +16,11 @@ ENV PATH "/usr/irissys/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sb
 
 
 COPY .iris_init /home/irisowner/.iris_init
+COPY --chown=${ISC_PACKAGE_MGRUSER}:${ISC_PACKAGE_IRISGROUP} data /home/irisowner/fhir-data/source
+RUN mkdir -p /home/irisowner/fhir-data/hospital /home/irisowner/fhir-data/practitioner /home/irisowner/fhir-data/patients && \
+    find /home/irisowner/fhir-data/source -type f -name 'hospitalInformation*.json' -exec ln -s {} /home/irisowner/fhir-data/hospital/ \; && \
+    find /home/irisowner/fhir-data/source -type f -name 'practitionerInformation*.json' -exec ln -s {} /home/irisowner/fhir-data/practitioner/ \; && \
+    find /home/irisowner/fhir-data/source -type f -name '*.json' ! -name 'hospitalInformation*.json' ! -name 'practitionerInformation*.json' -exec ln -s {} /home/irisowner/fhir-data/patients/ \;
 
 RUN --mount=type=bind,src=.,dst=. \
     iris start IRIS && \
