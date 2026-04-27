@@ -6,7 +6,7 @@ FHIRGuard is an intelligent MCP-powered data quality platform built on InterSyst
 
 ## Technical Details
 
-[ Add details on the technical implementation of your project here ] 
+![FHIRGuard AI Architecture](src/Technical%20Architecture.png)
 
 ## Setup Instructions [Optional]
 
