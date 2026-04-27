@@ -16,7 +16,7 @@ FHIRGuard is an intelligent MCP-powered data quality platform built on InterSyst
 
 **Delete as appropriate**: 
 - We are happy for our project to be publicly visable after the event (you will remain repo admins) 
-- We would like our project to be made private at the end of the event
+
 
 
 # Template Instructions (feel free to delete)
